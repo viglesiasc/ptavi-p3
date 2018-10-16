@@ -33,6 +33,7 @@ if __name__ == "__main__":
                 if atributo == 'src' and atributos[atributo][0:7] == 'http://':
                     urlretrieve(atributos[atributo],
                                 atributos[atributo].split('/')[-1])
+                    atributos[atributo] = atributos[atributo].split('/')[-1]
                 if atributos[atributo] != '':
                     json.dump("\t" + atributo + "="
                               + (atributos[atributo]), fichero_json)
