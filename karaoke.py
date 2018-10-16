@@ -4,6 +4,7 @@
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 from smallsmilhandler import SmallSMILHandler
+from urllib.request import urlretrieve
 
 import json
 import sys
@@ -29,6 +30,9 @@ if __name__ == "__main__":
             print(str(elemento), end='')
             json.dump(elemento, fichero_json)
             for atributo in atributos:
+                if atributo == 'src' and atributos[atributo][0:7] == 'http://':
+                    urlretrieve(atributos[atributo],
+                                atributos[atributo].split('/')[-1])
                 if atributos[atributo] != '':
                     json.dump("\t" + atributo + "="
                               + (atributos[atributo]), fichero_json)
